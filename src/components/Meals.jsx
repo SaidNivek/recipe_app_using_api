@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../context'
 
 function Meals() {
+
+  const context = useContext(AppContext)
+
+  console.log(context)
+
   return (
-    <div>Meals</div>
+    <>
+      <h1>Meals Component</h1>
+      <p>{context.name}</p>
+    </>
   )
 }
 

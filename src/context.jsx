@@ -3,9 +3,9 @@ import React, { useContext } from 'react'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-    return <AppContext.Provider value="helo">
+    return <AppContext.Provider value={{name: 'kevin', role:'student'}}>
         {children}
     </AppContext.Provider>
 }
 
-export default { AppContext, AppProvider }
+export { AppContext, AppProvider }
