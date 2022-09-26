@@ -9,10 +9,10 @@ function App() {
   return (
     <main className="App">
       Meals App
-      <Favorites />
+      {/* <Search /> */}
+      {/* <Favorites /> */}
       <Meals />
-      <Modal />
-      <Search />
+      {/* <Modal /> */}
     </main>
   );
 }
