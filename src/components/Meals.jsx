@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../context'
+import { useGlobalContext } from '../context'
 
 function Meals() {
 
-  const context = useContext(AppContext)
+  const context = useGlobalContext()
 
   console.log(context)
 
