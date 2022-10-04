@@ -7,14 +7,15 @@ const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=a'
 const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
 const AppProvider = ({ children }) => {
-
+    // Using axios, installed through npm
     const fetchMeals = async(url) => {
         try {
-            const response = await axios(url)
-            console.log(response)
+            // destructure the data from the response
+            const {data} = await axios(url)
+            console.log(data)
         }
-        catch (e) {
-            console.log(e.response)
+        catch (error) {
+            console.log(error.response)
         }
     }
     
