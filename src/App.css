@@ -231,6 +231,7 @@ ul {
 .remove-btn:hover{
   color:var(--red-dark)
 }
+
 /* Meals */
 .section,.section-center{
   padding:3rem 0;
@@ -238,7 +239,6 @@ ul {
   max-width:var(--max-width);
   margin:0 auto;
 }
-
 .section-center{
   display:grid;
   gap:2rem;
@@ -265,9 +265,9 @@ ul {
 }
 .single-meal img{
   height:15rem;
-    border-top-left-radius:var(--borderRadius);
-    border-top-right-radius:var(--borderRadius);
-cursor:pointer;
+  border-top-left-radius:var(--borderRadius);
+  border-top-right-radius:var(--borderRadius);
+  cursor:pointer;
 }
 .single-meal h5{
   padding:0;
@@ -291,8 +291,8 @@ cursor:pointer;
   color:var(--red-dark);
   transform:translateY(-2px)
 }
-/* Modal */
 
+/* Modal */
 .modal-overlay{
   position:fixed;
   top:0;
