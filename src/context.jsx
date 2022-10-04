@@ -7,12 +7,16 @@ const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=a'
 const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
 const AppProvider = ({ children }) => {
+    // Get the data from the fetchMeals function
+    const [meals, setMeals] = useState([])
+
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
         try {
             // destructure the data from the response
             const {data} = await axios(url)
-            console.log(data)
+            // useEffect to setMeals to the data.meals, returned from the axios fetch
+            setMeals(data.meals)
         }
         catch (error) {
             console.log(error.response)
@@ -36,8 +40,10 @@ const AppProvider = ({ children }) => {
     useEffect(() => { 
         fetchMeals(allMealsUrl)
     }, [])
+
+
     
-    return <AppContext.Provider value={{name: 'kevin', role:'student'}}>
+    return <AppContext.Provider value={{meals}}>
         {children}
     </AppContext.Provider>
 }

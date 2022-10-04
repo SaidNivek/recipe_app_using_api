@@ -2,14 +2,14 @@ import { useGlobalContext } from '../context'
 
 function Meals() {
 
-  const context = useGlobalContext()
+  // Destructure and assign meals from the global context
+  const { meals } = useGlobalContext()
 
-  console.log(context)
+  console.log(meals)
 
   return (
     <>
       <h1>Meals Component</h1>
-      <p>{context.name}</p>
     </>
   )
 }
