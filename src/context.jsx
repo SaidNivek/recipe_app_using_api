@@ -42,7 +42,7 @@ const AppProvider = ({ children }) => {
     }, [])
 
 
-    
+    // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
     return <AppContext.Provider value={{meals}}>
         {children}
     </AppContext.Provider>
