@@ -8,7 +8,11 @@ function Meals() {
 
 
     if(loading) {
-      return <h2>Loading...</h2>
+      return (
+        <section className="section">
+          <h4>Loading...</h4>
+        </section>
+      )
     } else {
       return (
         <section className="section-center">

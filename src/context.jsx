@@ -15,19 +15,19 @@ const AppProvider = ({ children }) => {
 
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
+        // setLoading to true, to display "Loading..." in the app
+        setLoading(true)
         try {
-            // setLoading to true, to display "Loading..." in the app
-            setLoading(true)
             // destructure the data from the response
             const {data} = await axios(url)
             // useEffect to setMeals to the data.meals, returned from the axios fetch
             setMeals(data.meals)
-            // When the meals get set, setLoading to false to display the meals
-            setLoading(false)
         }
         catch (error) {
             console.log(error.response)
         }
+        // When the meals get set, setLoading to false to display the meals
+        setLoading(false)
     }
     
     // React fetch API
