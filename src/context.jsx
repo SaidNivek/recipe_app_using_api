@@ -3,15 +3,14 @@ import axios from 'axios'
 
 const AppContext = React.createContext()
 
-const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=a'
+const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=k'
 const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
 const AppProvider = ({ children }) => {
-    // Get the data from the fetchMeals function
-    const [meals, setMeals] = useState([])
-
     // Setup a loading variable useState hooke
     const [loading, setLoading] = useState(false)
+    // Get the data from the fetchMeals function
+    const [meals, setMeals] = useState([])
 
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
@@ -21,7 +20,13 @@ const AppProvider = ({ children }) => {
             // destructure the data from the response
             const {data} = await axios(url)
             // useEffect to setMeals to the data.meals, returned from the axios fetch
-            setMeals(data.meals)
+            // Check to see if any data is returned, if data is returned, setMeals to the returned data
+            if(data.meals) {
+                setMeals(data.meals)
+            }
+            else {
+                setMeals([])
+            }
         }
         catch (error) {
             console.log(error.response)
