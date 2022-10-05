@@ -10,13 +10,20 @@ const AppProvider = ({ children }) => {
     // Get the data from the fetchMeals function
     const [meals, setMeals] = useState([])
 
+    // Setup a loading variable useState hooke
+    const [loading, setLoading] = useState(false)
+
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
         try {
+            // setLoading to true, to display "Loading..." in the app
+            setLoading(true)
             // destructure the data from the response
             const {data} = await axios(url)
             // useEffect to setMeals to the data.meals, returned from the axios fetch
             setMeals(data.meals)
+            // When the meals get set, setLoading to false to display the meals
+            setLoading(false)
         }
         catch (error) {
             console.log(error.response)
@@ -43,7 +50,7 @@ const AppProvider = ({ children }) => {
 
 
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
-    return <AppContext.Provider value={{meals}}>
+    return <AppContext.Provider value={{meals, loading}}>
         {children}
     </AppContext.Provider>
 }
