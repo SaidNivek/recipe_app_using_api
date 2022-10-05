@@ -9,7 +9,7 @@ function App() {
   return (
     <main className="App">
       Meals App
-      {/* <Search /> */}
+      <Search />
       {/* <Favorites /> */}
       <Meals />
       {/* <Modal /> */}
