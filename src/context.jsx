@@ -52,12 +52,16 @@ const AppProvider = ({ children }) => {
     // }
 
     useEffect(() => { 
-        fetchMeals(allMealsUrl + searchTerm)
+        fetchMeals(`${allMealsUrl}${searchTerm}`)
     }, [searchTerm])
+
+    const fetchRandomMeal = () => {
+        fetchMeals(randomMealUrl)
+    }
 
 
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
-    return <AppContext.Provider value={{meals, loading, setSearchTerm}}>
+    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal}}>
         {children}
     </AppContext.Provider>
 }
