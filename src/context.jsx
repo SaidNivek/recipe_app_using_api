@@ -13,6 +13,8 @@ const AppProvider = ({ children }) => {
     const [meals, setMeals] = useState([])
     // Create a variable to contain the search term, to be used in the Search component
     const [searchTerm, setSearchTerm] = useState('')
+    // Create a state for the modal, to display it and to hide it
+    const [showModal, setShowModal] = useState(false)
 
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
@@ -70,7 +72,7 @@ const AppProvider = ({ children }) => {
     }
 
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
-    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal}}>
+    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal}}>
         {children}
     </AppContext.Provider>
 }
