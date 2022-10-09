@@ -15,6 +15,8 @@ const AppProvider = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState('')
     // Create a state for the modal, to display it and to hide it
     const [showModal, setShowModal] = useState(false)
+    // Create a selectedMeal state, to use with the modal, to determine the data that is displayed in the modal
+    const [selectedMeal, setSelectedMeal] = useState(null)
 
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
@@ -71,8 +73,20 @@ const AppProvider = ({ children }) => {
         fetchMeals(randomMealUrl)
     }
 
+    // This function will set the selectedMeal, when chosen by the user, that will display in the Modal
+    const selectMeal = (idMeal, favoriteMeal) => {
+        let meal
+        // This will search through all of the meals held in the state variable, and find the selected meal
+        // It will grab the mealId and set meal equal to the found meal
+        meal = meals.find((meal) => meal.idMeal === idMeal)
+        // Sets the state of the selectedMeal to the found meal, above
+        setSelectedMeal(meal)
+        // This will set showModal to true, to display the data in the modal
+        setShowModal(true)
+    }
+
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
-    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal}}>
+    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal, selectMeal, selectedMeal}}>
         {children}
     </AppContext.Provider>
 }
