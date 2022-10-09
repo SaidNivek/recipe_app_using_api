@@ -51,14 +51,23 @@ const AppProvider = ({ children }) => {
     //     }
     // }
 
-    useEffect(() => { 
+    // Set up this use effect to fix the bug where a random click after a search term is called will request twice to the server
+    // This double request will cause a random meal to NOT display, as the change in searchTerm triggers an overriding call
+    useEffect(() => {
+        if (!searchTerm) {
+            return 
+        }
         fetchMeals(`${allMealsUrl}${searchTerm}`)
     }, [searchTerm])
-
+    
+    // This useEffect will run when the application loads, which will load the page with the data for an empty search
+    useEffect(() => {
+        fetchMeals(allMealsUrl)
+    }, [])
+    
     const fetchRandomMeal = () => {
         fetchMeals(randomMealUrl)
     }
-
 
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
     return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal}}>

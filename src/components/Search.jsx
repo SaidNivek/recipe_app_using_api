@@ -18,7 +18,9 @@ function Search() {
     } 
   }
 
-  const handleRandom = () => {
+  const handleRandomMeal = () => {
+    setSearchTerm('')
+    setText('')
     fetchRandomMeal()
   }
 
@@ -27,7 +29,7 @@ function Search() {
       <form onSubmit={handleSubmit}>
         <input className="form-input" type="text" value={text} placeholder='Search for a meal' onChange={handleChange}></input>
         <button className="btn" type="submit">Search</button>
-        <button className="btn btn-hipster" type="button" onClick={handleRandom}>Surprise Me!</button>
+        <button className="btn btn-hipster" type="button" onClick={handleRandomMeal}>Surprise Me!</button>
       </form>
     </header>
   )
