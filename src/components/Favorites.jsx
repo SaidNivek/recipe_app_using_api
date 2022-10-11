@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Favorites() {
+  const [favorites, setFavorites] = useState([]);
+
   return (
     <div>Favorites</div>
   )
