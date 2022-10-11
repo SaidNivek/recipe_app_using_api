@@ -85,8 +85,13 @@ const AppProvider = ({ children }) => {
         setShowModal(true)
     }
 
+    // This function will close the modal when the close is selected
+    const closeModal = () => {
+        setShowModal(false)
+    }
+
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
-    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal, selectMeal, selectedMeal}}>
+    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal, selectMeal, selectedMeal, closeModal}}>
         {children}
     </AppContext.Provider>
 }
