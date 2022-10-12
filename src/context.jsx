@@ -94,12 +94,12 @@ const AppProvider = ({ children }) => {
 
     // This function will allow the user to add a meal to their favorites, which will be displayed on the page for them
     const addToFavorites = (idMeal) => {
-        // Find the meal that matches the selected meal to be added
-        const meal = meals.find((meal) => meal.idMeal === idMeal)
         // Check to see if the selectedMeal is already in the favorites list
         const alreadyFavorite = favorites.find((meal) => meal.idMeal === idMeal)
         // If it is in the favorite slist, end the function and return nothing, since nothing needs to change
         if(alreadyFavorite) return
+        // Find the meal that matches the selected meal to be added
+        const meal = meals.find((meal) => meal.idMeal === idMeal)
         // If the meal is not in thefavorite list, add it to the favorite list
         const updatedFavorites = [...favorites, meal]
         // Set the updatedFavorites list to the favorites list, using its hook
