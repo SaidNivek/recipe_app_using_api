@@ -106,8 +106,15 @@ const AppProvider = ({ children }) => {
         setFavorites(updatedFavorites)
     }
 
+    // This function will remove the selected Favorite item from the favorites list
+    const removeFromFavorites = (idMeal) => {
+        // This will filter out all of the meals that ARE NOT the idMeal, putting them into a new list to be set with the proper hook
+        const updatedFavorites = favorites.filter((meal) => meal.idMeal !== idMeal)
+        setFavorites(updatedFavorites)
+    }
+
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
-    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal, selectMeal, selectedMeal, closeModal}}>
+    return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal, selectMeal, selectedMeal, closeModal, favorites, addToFavorites, removeFromFavorites}}>
         {children}
     </AppContext.Provider>
 }
