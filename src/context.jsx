@@ -17,6 +17,8 @@ const AppProvider = ({ children }) => {
     const [showModal, setShowModal] = useState(false)
     // Create a selectedMeal state, to use with the modal, to determine the data that is displayed in the modal
     const [selectedMeal, setSelectedMeal] = useState(null)
+    // Create a hook for the user's favorite meals to be stored in
+    const [favorites, setFavorites] = useState([])
 
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
@@ -88,6 +90,20 @@ const AppProvider = ({ children }) => {
     // This function will close the modal when the close is selected
     const closeModal = () => {
         setShowModal(false)
+    }
+
+    // This function will allow the user to add a meal to their favorites, which will be displayed on the page for them
+    const addToFavorites = (idMeal) => {
+        // Find the meal that matches the selected meal to be added
+        const meal = meals.find((meal) => meal.idMeal === idMeal)
+        // Check to see if the selectedMeal is already in the favorites list
+        const alreadyFavorite = favorites.find((meal) => meal.idMeal === idMeal)
+        // If it is in the favorite slist, end the function and return nothing, since nothing needs to change
+        if(alreadyFavorite) return
+        // If the meal is not in thefavorite list, add it to the favorite list
+        const updatedFavorites = [...favorites, meal]
+        // Set the updatedFavorites list to the favorites list, using its hook
+        setFavorites(updatedFavorites)
     }
 
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
