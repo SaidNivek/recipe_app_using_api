@@ -6,17 +6,17 @@ const AppContext = React.createContext()
 const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
-    // This function will get the favorites from local storage
-    // Needs to be at the top because it needs to be initalized before it's invoked
-    const getFavoritesFromLocalStorage = () => {
-        let favorites = localStorage.getItem('favorites')
-        if (favorites) {
-            favorites = JSON.parse(localStorage.getItem('favorites'))
-        } else {
-            favorites = []
-        }
-        return favorites
+// This function will get the favorites from local storage
+// Needs to be at the top because it needs to be initalized before it's invoked
+const getFavoritesFromLocalStorage = () => {
+    let favorites = localStorage.getItem('favorites')
+    if (favorites) {
+        favorites = JSON.parse(localStorage.getItem('favorites'))
+    } else {
+        favorites = []
     }
+    return favorites
+}
 
 const AppProvider = ({ children }) => {
 
