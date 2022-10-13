@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
+import { useGlobalContext } from '../context';
 
 function Favorites() {
-  const [favorites, setFavorites] = useState([]);
-
-  // const addtoFavorites = (idMeal) => {
-  //   const meal = meals.find((meal) => meal.idMeal === idMeal)
-  // }
+  // Grab the items from global context needed for this component
+  const {favorites, selectMeal, removeFromFavorites } = useGlobalContext()
 
   return (
     <div>Favorites</div>
