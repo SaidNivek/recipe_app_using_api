@@ -7,6 +7,19 @@ const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
 const AppProvider = ({ children }) => {
+
+    // This function will get the favorites from local storage
+    // Needs to be at the top because it needs to be initalized before it's invoked
+    const getFavoritesFromLocalStorage = () => {
+        let favorites = localStorage.getItem('favorites')
+        if (favorites) {
+            favorites = JSON.parse(localStorage.getItem('favorites'))
+        } else {
+            favorites = []
+        }
+        return favorites
+    }
+
     // Setup a loading variable useState hooke
     const [loading, setLoading] = useState(false)
     // Get the data from the fetchMeals function
@@ -17,8 +30,8 @@ const AppProvider = ({ children }) => {
     const [showModal, setShowModal] = useState(false)
     // Create a selectedMeal state, to use with the modal, to determine the data that is displayed in the modal
     const [selectedMeal, setSelectedMeal] = useState(null)
-    // Create a hook for the user's favorite meals to be stored in
-    const [favorites, setFavorites] = useState([])
+    // Create a hook for the user's favorite meals to be stored in, which checks the local storage to see if there are favorites there from a previous session
+    const [favorites, setFavorites] = useState(getFavoritesFromLocalStorage())
 
     // Using axios, installed through npm
     const fetchMeals = async(url) => {
@@ -110,6 +123,8 @@ const AppProvider = ({ children }) => {
         const updatedFavorites = [...favorites, meal]
         // Set the updatedFavorites list to the favorites list, using its hook
         setFavorites(updatedFavorites)
+        // Add the favorites to the local storage
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
     }
 
     // This function will remove the selected Favorite item from the favorites list
@@ -117,7 +132,11 @@ const AppProvider = ({ children }) => {
         // This will filter out all of the meals that ARE NOT the idMeal, putting them into a new list to be set with the proper hook
         const updatedFavorites = favorites.filter((meal) => meal.idMeal !== idMeal)
         setFavorites(updatedFavorites)
+        // This will set the favorites in local storage to the updated favorites array, after removal
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
     }
+
+
 
     // Pass in the global values, in this case it's the meals, which is set in the useEffect hook
     return <AppContext.Provider value={{meals, loading, setSearchTerm, fetchRandomMeal, showModal, selectMeal, selectedMeal, closeModal, favorites, addToFavorites, removeFromFavorites}}>
