@@ -6,8 +6,6 @@ const AppContext = React.createContext()
 const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 const randomMealUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
-const AppProvider = ({ children }) => {
-
     // This function will get the favorites from local storage
     // Needs to be at the top because it needs to be initalized before it's invoked
     const getFavoritesFromLocalStorage = () => {
@@ -19,6 +17,8 @@ const AppProvider = ({ children }) => {
         }
         return favorites
     }
+
+const AppProvider = ({ children }) => {
 
     // Setup a loading variable useState hooke
     const [loading, setLoading] = useState(false)
