@@ -11,8 +11,7 @@ function App() {
   const { showModal, favorites } = useGlobalContext()
 
   return (
-    <main className="App">
-      Meals App
+    <main className="App">      
       <Search />
       {/* Favorites will only display if the length of the favorites array is larger than 0 */}
       {favorites.length > 0 &&<Favorites />}
