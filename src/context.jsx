@@ -78,9 +78,15 @@ const AppProvider = ({ children }) => {
     // This function will set the selectedMeal, when chosen by the user, that will display in the Modal
     const selectMeal = (idMeal, favoriteMeal) => {
         let meal
-        // This will search through all of the meals held in the state variable, and find the selected meal
-        // It will grab the mealId and set meal equal to the found meal
-        meal = meals.find((meal) => meal.idMeal === idMeal)
+        // If the meal is a favorite, check the favorites array for the meal and select that one
+        if (favoriteMeal) {
+            meal = favorites.find((meal) => meal.idMeal === idMeal)
+        // If the meal is not in the favorites array, then select it from the rest of the meals array
+        } else {
+            // This will search through all of the meals held in the state variable, and find the selected meal
+            // It will grab the mealId and set meal equal to the found meal
+            meal = meals.find((meal) => meal.idMeal === idMeal)
+        }
         // Sets the state of the selectedMeal to the found meal, above
         setSelectedMeal(meal)
         // This will set showModal to true, to display the data in the modal
